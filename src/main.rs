@@ -254,6 +254,7 @@ fn main() {
         ("youtube_dl", "--version"),
         ("zathura", "--version"),
         ("zenity", "--version"),
+        ("zig", "version"),
         ("zsh", "--version"),
     ]
     .iter()
