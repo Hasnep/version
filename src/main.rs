@@ -221,6 +221,7 @@ fn main() {
         ("sqlite", "-version"),
         ("squeue", "-V"),
         ("ssh", "-V"),
+        ("svn", "--version"),
         ("swift", "-version"),
         ("syncthing", "-version"),
         ("tcsh", "--version"),
