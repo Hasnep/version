@@ -4,6 +4,7 @@ The blazing fast way to check what version of grep you're using, written in Rust
 
 This is a Rust rewrite of the [`version`](https://github.com/bit101/version) tool written by [Keith Peters](http://www.bit-101.com/).
 I wanted to write a complete project in Rust that I would actually find useful, and I thought it would be funny to rewrite such a simple tool in Rust.
+The code is super messy for now, I just got the main functionality working and am going back to refactor it into something maintainable.
 
 ## Usage
 
