@@ -1,11 +1,11 @@
 use std::collections::HashMap;
 use std::process::Command;
 
-// fn list_tools(tools: &HashMap<&str, &str>) {
-//     for (tool_name, _) in tools {
-//         println!("{}", tool_name)
-//     }
-// }
+fn print_list_of_tools(tools: &HashMap<&str, &str>) {
+    for (tool_name, _) in tools {
+        println!("{}", tool_name)
+    }
+}
 
 fn get_version_of_tool(tool_name: &str, argument: &str) -> String {
     println!(
@@ -273,32 +273,37 @@ fn main() {
         // TODO: Add a help page here
         println!("No tool specified.");
     } else {
-        let does_snap_exist = check_does_snap_exist();
-        for tool_name in cli_args.skip(1) {
-            println!("Checking tool `{}`", &tool_name);
-            let tool_exists = check_does_tool_exist(&tool_name);
-            if tool_exists {
-                let version_argument = tools.get(&tool_name as &str);
-                match version_argument {
-                    Some(version_argument) => {
-                        let tool_version = get_version_of_tool(&tool_name, &version_argument);
-                        println!("{}", tool_version)
-                    }
-                    None => {
-                        println!(
-                            "I don't know how to get the version of the tool `{}`",
-                            tool_name
-                        )
-                        // TODO: Continue
-                    }
-                }
+        for argument in cli_args.skip(1) {
+            if argument == "--list" || argument == "-l" {
+                print_list_of_tools(&tools)
             } else {
-                println!("Tool doesn't exist, checking snaps.");
-                if does_snap_exist {
-                    let tool_version = check_snap(&tool_name);
-                    match tool_version {
-                        Some(v) => println!("{}", v),
-                        None => println!("Tool {} not found as a snap", tool_name),
+                let tool_name = argument;
+                println!("Checking tool `{}`", &tool_name);
+                let tool_exists = check_does_tool_exist(&tool_name);
+                if tool_exists {
+                    let version_argument = tools.get(&tool_name as &str);
+                    match version_argument {
+                        Some(version_argument) => {
+                            let tool_version = get_version_of_tool(&tool_name, &version_argument);
+                            println!("{}", tool_version)
+                        }
+                        None => {
+                            println!(
+                                "I don't know how to get the version of the tool `{}`",
+                                tool_name
+                            )
+                            // TODO: Continue
+                        }
+                    }
+                } else {
+                    println!("Tool doesn't exist, checking snaps.");
+                    let does_snap_exist = check_does_snap_exist();
+                    if does_snap_exist {
+                        let tool_version = check_snap(&tool_name);
+                        match tool_version {
+                            Some(v) => println!("{}", v),
+                            None => println!("Tool {} not found as a snap", tool_name),
+                        }
                     }
                 }
             }

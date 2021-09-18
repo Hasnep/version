@@ -8,6 +8,8 @@ The code is super messy for now, I just got the main functionality working and a
 
 ## Usage
 
+To get the version of a tool, use:
+
 ```shell
 version <tool name>
 ```
@@ -17,6 +19,12 @@ For example:
 ```text
 version python3
 Python 3.9.5
+```
+
+To get a list of all the tools that `version` knows about, run:
+
+```shell
+version --list
 ```
 
 ## Installation
