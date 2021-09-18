@@ -245,6 +245,7 @@ fn main() {
         ("w3m", "-version"),
         ("wget", "--version"),
         ("wine", "--version"),
+        ("wireshark", "--version"),
         ("wmctrl", "--version"),
         ("xdotool", "--version"),
         ("xelatex", "-version"),
