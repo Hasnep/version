@@ -218,6 +218,7 @@ fn main() {
         ("snapcraft", "version"),
         ("solaar", "--version"),
         ("spotify", "--version"),
+        ("sqlite", "-version"),
         ("squeue", "-V"),
         ("ssh", "-V"),
         ("swift", "-version"),
