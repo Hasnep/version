@@ -232,6 +232,7 @@ fn main() {
         ("tldr", "-v"),
         ("tlmgr", "version"),
         ("tmux", "-V"),
+        ("transmission-gtk", "--version"),
         ("tsc", "-v"),
         ("ufw", "version"),
         ("valgrind", "--version"),
