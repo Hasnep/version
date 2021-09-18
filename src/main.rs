@@ -167,6 +167,7 @@ fn main() {
         ("make", "-v"),
         ("man", "--version"),
         ("meld", "--version"),
+        ("micro", "-version"),
         ("mousepad", "-v"),
         ("mpv", "--version"),
         ("multipass", "version"),
