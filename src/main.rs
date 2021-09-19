@@ -30,11 +30,12 @@ fn get_version_of_tool(tool_name: &str, argument: &str) -> String {
 
 fn check_does_tool_exist(tool_name: &str) -> bool {
     println!(
-        "Checking if {} exists by running `sh -c command -v {}`",
+        "Checking if {} exists by running `which {}`",
         tool_name, tool_name
     );
-    match Command::new("sh").arg("-c").arg("command -v snap").output() {
+    match Command::new("which").arg(tool_name).output() {
         Ok(output) => {
+            println!("{:?}", String::from_utf8(output.stdout).ok());
             if output.status.success() {
                 println!("{} does exist.", tool_name);
                 return true;
