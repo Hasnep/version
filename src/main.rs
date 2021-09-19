@@ -7,6 +7,13 @@ fn print_list_of_tools(tools: &HashMap<&str, &str>) {
     }
 }
 
+fn print_help() {
+    println!("version");
+    println!("version <tool name>");
+    println!("version --help");
+    println!("version --list");
+}
+
 fn get_version_of_tool(tool_name: &str, argument: &str) -> String {
     println!(
         "Getting the version of {} by running `{} {}`",
@@ -270,12 +277,13 @@ fn main() {
     println!("{:#?}", cli_args);
 
     if cli_args.len() <= 1 {
-        // TODO: Add a help page here
-        println!("No tool specified.");
+        print_help();
     } else {
         for argument in cli_args.skip(1) {
             if argument == "--list" || argument == "-l" {
                 print_list_of_tools(&tools)
+            } else if argument == "--help" || argument == "-h" {
+                print_help()
             } else {
                 let tool_name = argument;
                 println!("Checking tool `{}`", &tool_name);
