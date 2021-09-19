@@ -74,7 +74,11 @@ fn main() {
                 .help("Lists programs")
                 .takes_value(false),
         )
-        .arg(Arg::with_name("tool name").multiple(false))
+        .arg(
+            Arg::with_name("tool name")
+                .multiple(false)
+                .required_unless("list"),
+        )
         .get_matches();
 
     let tools: HashMap<&str, &str> = include!(concat!(env!("OUT_DIR"), "/tools.rs"));
