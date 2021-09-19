@@ -8,17 +8,10 @@ fn print_list_of_tools(tools: &HashMap<&str, &str>) {
     }
 }
 
-fn get_version_of_tool(tool_name: &str, argument: &str) -> String {
-    println!(
-        "Getting the version of {} by running `{} {}`",
-        tool_name, tool_name, argument
-    );
+fn get_version_of_tool(tool_name: &str, argument: &str) -> Option<String> {
     return match Command::new(tool_name).arg(argument).output() {
-        Ok(output) => match String::from_utf8(output.stdout) {
-            Ok(s) => s,
-            Err(_) => return "Oh no something went wrong with decoding output.".to_owned(),
-        },
-        Err(_) => return "Oh no something went wrong with running the command.".to_owned(),
+        Ok(output) => String::from_utf8(output.stdout).ok(),
+        Err(_) => None,
     };
 }
 
@@ -97,8 +90,10 @@ fn main() {
                     let version_argument = tools.get(&tool_name as &str);
                     match version_argument {
                         Some(version_argument) => {
-                            let tool_version = get_version_of_tool(&tool_name, &version_argument);
-                            println!("{}", tool_version)
+                            match get_version_of_tool(&tool_name, &version_argument) {
+                                Some(tool_version) => println!("{}", tool_version),
+                                None => println!("Couldn't get version of {}.", tool_name),
+                            }
                         }
                         None => {
                             println!(
