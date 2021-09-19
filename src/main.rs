@@ -1,3 +1,4 @@
+use clap::{crate_description, crate_name, crate_version, App, Arg};
 use std::collections::HashMap;
 use std::process::Command;
 
@@ -5,13 +6,6 @@ fn print_list_of_tools(tools: &HashMap<&str, &str>) {
     for (tool_name, _) in tools {
         println!("{}", tool_name)
     }
-}
-
-fn print_help() {
-    println!("version");
-    println!("version <tool name>");
-    println!("version --help");
-    println!("version --list");
 }
 
 fn get_version_of_tool(tool_name: &str, argument: &str) -> String {
@@ -77,22 +71,26 @@ fn check_snap(tool_name: &str) -> Option<String> {
 }
 
 fn main() {
+    let matches = App::new(crate_name!())
+        .version(crate_version!())
+        .about(crate_description!())
+        .arg(
+            Arg::with_name("list")
+                .long("--list")
+                .short("-l")
+                .help("Lists programs")
+                .takes_value(false),
+        )
+        .arg(Arg::with_name("tool name").multiple(false))
+        .get_matches();
+
     let tools: HashMap<&str, &str> = include!(concat!(env!("OUT_DIR"), "/tools.rs"));
 
-    let cli_args = std::env::args();
-
-    println!("{:#?}", cli_args);
-
-    if cli_args.len() <= 1 {
-        print_help();
+    if matches.is_present("list") {
+        print_list_of_tools(&tools)
     } else {
-        for argument in cli_args.skip(1) {
-            if argument == "--list" || argument == "-l" {
-                print_list_of_tools(&tools)
-            } else if argument == "--help" || argument == "-h" {
-                print_help()
-            } else {
-                let tool_name = argument;
+        match matches.value_of("tool name") {
+            Some(tool_name) => {
                 println!("Checking tool `{}`", &tool_name);
                 let tool_exists = check_does_tool_exist(&tool_name);
                 if tool_exists {
@@ -122,6 +120,7 @@ fn main() {
                     }
                 }
             }
+            None => {}
         }
     }
 }
