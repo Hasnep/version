@@ -1,4 +1,5 @@
 use clap::{crate_description, crate_name, crate_version, App, Arg};
+use regex::Regex;
 use std::collections::HashMap;
 use std::process::Command;
 
@@ -8,6 +9,31 @@ fn print_list_of_tools(tools: &HashMap<&str, &str>) {
     }
 }
 
+fn get_tool_version(tool_name: &str, tools: HashMap<&str, &str>) -> Option<String> {
+    let version_argument = tools.get(tool_name);
+    let is_tool_installed = get_is_tool_installed(tool_name);
+    if is_tool_installed {
+        match version_argument {
+            Some(version_argument) => match get_version_of_tool(tool_name, version_argument) {
+                Some(version) => return Some(version),
+                None => {}
+            },
+            None => {}
+        }
+    }
+    // Snaps
+    let is_snap_installed = get_is_snap_installed();
+    if is_snap_installed {
+        println!("Checking snap...");
+        match check_snap(tool_name) {
+            Some(version) => return Some(version.to_string()),
+            None => {}
+        }
+    }
+    // If the tool has not been found return nothing
+    return None;
+}
+
 fn get_version_of_tool(tool_name: &str, argument: &str) -> Option<String> {
     return match Command::new(tool_name).arg(argument).output() {
         Ok(output) => String::from_utf8(output.stdout).ok(),
@@ -15,7 +41,7 @@ fn get_version_of_tool(tool_name: &str, argument: &str) -> Option<String> {
     };
 }
 
-fn check_does_tool_exist(tool_name: &str) -> bool {
+fn get_is_tool_installed(tool_name: &str) -> bool {
     println!(
         "Checking if {} exists by running `which {}`",
         tool_name, tool_name
@@ -41,13 +67,14 @@ fn check_does_tool_exist(tool_name: &str) -> bool {
     };
 }
 
-fn check_does_snap_exist() -> bool {
-    return check_does_tool_exist("snap");
+fn get_is_snap_installed() -> bool {
+    return get_is_tool_installed("snap");
 }
 
-// fn extract_version_from_snap_output(stdout: &str) -> Option<String> {
-//     regex::Regex.new("")
-// }
+fn extract_version_from_snap_output(tool_name: &str, stdout: &str) -> Option<String> {
+    let pattern = Regex::new(&format!(r"{}\s+(\S*)", tool_name)).unwrap();
+    return Some(pattern.captures(&stdout)?.get(1)?.as_str().to_string());
+}
 
 fn check_snap(tool_name: &str) -> Option<String> {
     println!("Running `snap list {}`", tool_name);
@@ -57,7 +84,11 @@ fn check_snap(tool_name: &str) -> Option<String> {
         .output()
         .ok()?;
     if output.status.success() {
-        return String::from_utf8(output.stdout).ok();
+        let stdout = String::from_utf8(output.stdout);
+        return match &stdout {
+            Ok(s) => extract_version_from_snap_output(tool_name, &s),
+            Err(_) => None,
+        };
     } else {
         return None;
     }
@@ -86,40 +117,11 @@ fn main() {
     if matches.is_present("list") {
         print_list_of_tools(&tools)
     } else {
-        match matches.value_of("tool name") {
-            Some(tool_name) => {
-                println!("Checking tool `{}`", &tool_name);
-                let tool_exists = check_does_tool_exist(&tool_name);
-                if tool_exists {
-                    let version_argument = tools.get(&tool_name as &str);
-                    match version_argument {
-                        Some(version_argument) => {
-                            match get_version_of_tool(&tool_name, &version_argument) {
-                                Some(tool_version) => println!("{}", tool_version),
-                                None => println!("Couldn't get version of {}.", tool_name),
-                            }
-                        }
-                        None => {
-                            println!(
-                                "I don't know how to get the version of the tool `{}`",
-                                tool_name
-                            )
-                            // TODO: Continue
-                        }
-                    }
-                } else {
-                    println!("Tool doesn't exist, checking snaps.");
-                    let does_snap_exist = check_does_snap_exist();
-                    if does_snap_exist {
-                        let tool_version = check_snap(&tool_name);
-                        match tool_version {
-                            Some(v) => println!("{}", v),
-                            None => println!("Tool {} not found as a snap", tool_name),
-                        }
-                    }
-                }
-            }
-            None => {}
-        }
+        let tool_version = match matches.value_of("tool name") {
+            Some(tool_name) => get_tool_version(tool_name, tools),
+            None => None,
+        };
+
+        println!("{}", tool_version.unwrap_or("".to_owned()));
     }
 }
