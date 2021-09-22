@@ -42,18 +42,11 @@ fn get_version_of_tool(tool_name: &str, argument: &str) -> Option<String> {
 }
 
 fn get_is_tool_installed(tool_name: &str) -> bool {
-    println!(
-        "Checking if {} exists by running `which {}`",
-        tool_name, tool_name
-    );
     match Command::new("which").arg(tool_name).output() {
         Ok(output) => {
-            println!("{:?}", String::from_utf8(output.stdout).ok());
             if output.status.success() {
-                println!("{} does exist.", tool_name);
                 return true;
             } else {
-                println!("{} does not exist.", tool_name);
                 return false;
             }
         }
@@ -77,7 +70,6 @@ fn extract_version_from_snap_output(tool_name: &str, stdout: &str) -> Option<Str
 }
 
 fn check_snap(tool_name: &str) -> Option<String> {
-    println!("Running `snap list {}`", tool_name);
     let output = Command::new("snap")
         .arg("list")
         .arg(tool_name)
