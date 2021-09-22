@@ -42,21 +42,9 @@ fn get_version_of_tool(tool_name: &str, argument: &str) -> Option<String> {
 }
 
 fn get_is_tool_installed(tool_name: &str) -> bool {
-    match Command::new("which").arg(tool_name).output() {
-        Ok(output) => {
-            if output.status.success() {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        Err(_) => {
-            println!(
-                "Got an error when trying to find if {} exists, assuming it doesn't.",
-                tool_name
-            );
-            return false;
-        }
+    return match Command::new("which").arg(tool_name).output() {
+        Ok(output) => output.status.success(),
+        Err(_) => false,
     };
 }
 
