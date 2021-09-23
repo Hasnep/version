@@ -9,8 +9,7 @@ fn print_list_of_tools(tools: &HashMap<&str, &str>) {
     }
 }
 
-fn get_tool_version(tool_name: &str, tools: HashMap<&str, &str>) -> Option<String> {
-    let version_argument = tools.get(tool_name);
+fn get_tool_version(tool_name: &str, version_argument: Option<&&str>) -> Option<String> {
     let is_tool_installed = get_is_tool_installed(tool_name);
     if is_tool_installed {
         match version_argument {
@@ -97,11 +96,20 @@ fn main() {
     if matches.is_present("list") {
         print_list_of_tools(&tools)
     } else {
-        let tool_version = match matches.value_of("tool name") {
-            Some(tool_name) => get_tool_version(tool_name, tools),
-            None => None,
+        let tool_name = matches.value_of("tool name").unwrap();
+        let version_argument = tools.get(tool_name);
+        match version_argument {
+            Some(version_argument) => {
+                println!("Command: {} {}", tool_name, version_argument)
+            }
+            None => {}
         };
-
-        println!("{}", tool_version.unwrap_or("".to_owned()));
+        let tool_version = get_tool_version(tool_name, version_argument);
+        match tool_version {
+            Some(tool_version) => {
+                println!("{}", tool_version)
+            }
+            None => {}
+        }
     }
 }

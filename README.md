@@ -17,7 +17,8 @@ version <tool name>
 For example:
 
 ```text
-version python3
+$ version python3
+Command: python3 -V
 Python 3.9.5
 ```
 
