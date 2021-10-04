@@ -91,6 +91,7 @@
   "libreoffice": "--version",
   "love": "--version",
   "lua": "-v",
+  "luarocks": "--version",
   "magick": "--version",
   "make": "-v",
   "man": "--version",
