@@ -6,6 +6,7 @@
   "autoconf": "--version",
   "automake": "--version",
   "awk": "--version",
+  "aws": "--version",
   "baobab": "--version",
   "bash": "--version",
   "bibtex": "-version",
