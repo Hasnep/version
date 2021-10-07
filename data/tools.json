@@ -83,6 +83,7 @@
   "inkscape": "--version",
   "java": "-version",
   "javac": "-version",
+  "jq": "--version",
   "julia": "-v",
   "kodi": "-v",
   "kotlin": "-version",
