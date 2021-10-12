@@ -80,6 +80,7 @@
   "haxelib": "version",
   "heroku": "-v",
   "htop": "-v",
+  "hugo": "version",
   "inkscape": "--version",
   "java": "-version",
   "javac": "-version",
