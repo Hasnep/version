@@ -1,6 +1,7 @@
 {
   "alacritty": "-V",
   "apt": "-v",
+  "aptitude": "--version",
   "arduino": "--version",
   "audacious": "-v",
   "autoconf": "--version",
