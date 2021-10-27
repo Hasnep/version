@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 mod apt;
+mod brew;
 mod snap;
 mod utils;
 
@@ -30,6 +31,15 @@ pub fn get_tool_version(tool_name: &str, version_argument: Option<&&str>) -> Opt
     if utils::get_is_apt_installed() {
         println!("Checking apt...");
         match apt::check_apt(tool_name) {
+            Some(version) => return Some(version.to_string()),
+            None => {}
+        }
+    }
+
+    // Brew
+    if utils::get_is_brew_installed() {
+        println!("Checking brew...");
+        match brew::check_brew(tool_name) {
             Some(version) => return Some(version.to_string()),
             None => {}
         }

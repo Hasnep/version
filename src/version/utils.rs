@@ -28,3 +28,7 @@ pub fn get_is_apt_installed() -> bool {
 pub fn get_is_snap_installed() -> bool {
     return get_is_tool_installed("snap");
 }
+
+pub fn get_is_brew_installed() -> bool {
+    return get_is_tool_installed("brew");
+}
