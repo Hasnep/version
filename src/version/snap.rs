@@ -8,11 +8,8 @@ pub fn check_snap(tool_name: &str) -> Option<String> {
         .output()
         .ok()?;
     if output.status.success() {
-        let stdout = String::from_utf8(output.stdout);
-        return match &stdout {
-            Ok(s) => extract_version_from_snap_output(tool_name, &s),
-            Err(_) => None,
-        };
+        let stdout = String::from_utf8(output.stdout).unwrap();
+        return extract_version_from_snap_output(tool_name, &stdout);
     } else {
         return None;
     }

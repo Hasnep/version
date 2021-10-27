@@ -17,8 +17,7 @@ pub fn get_tool_version(tool_name: &str, version_argument: Option<&&str>) -> Opt
     }
 
     // Snaps
-    let is_snap_installed = utils::get_is_snap_installed();
-    if is_snap_installed {
+    if utils::get_is_snap_installed() {
         println!("Checking snap...");
         match snap::check_snap(tool_name) {
             Some(version) => return Some(version.to_string()),
