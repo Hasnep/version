@@ -14,6 +14,17 @@ pub fn get_is_tool_installed(tool_name: &str) -> bool {
     };
 }
 
+pub fn get_is_apt_installed() -> bool {
+    return get_is_tool_installed("apt")
+    // Java also has an apt, this command will fail if we have found that apt
+        && Command::new("apt")
+            .arg("-v")
+            .output()
+            .unwrap()
+            .status
+            .success();
+}
+
 pub fn get_is_snap_installed() -> bool {
     return get_is_tool_installed("snap");
 }
