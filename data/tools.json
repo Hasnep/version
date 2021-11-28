@@ -11,6 +11,7 @@
   "az": "--version",
   "baobab": "--version",
   "bash": "--version",
+  "bat": "--version",
   "bibtex": "-version",
   "borg": "-V",
   "brew": "--version",
