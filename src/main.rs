@@ -8,16 +8,16 @@ fn main() {
         .version(crate_version!())
         .about(crate_description!())
         .arg(
-            Arg::with_name("list")
-                .long("--list")
-                .short("-l")
+            Arg::new("list")
+                .short('l')
+                .long("list")
                 .help("Lists programs")
                 .takes_value(false),
         )
         .arg(
-            Arg::with_name("tool name")
-                .multiple(false)
-                .required_unless("list"),
+            Arg::new("tool name")
+                .multiple_occurrences(false)
+                .required_unless_present("list"),
         )
         .get_matches();
 

@@ -5,7 +5,7 @@ description = "🦀 The blazing fast way to check what version of grep you're us
 edition = "2018"
 
 [dependencies]
-clap = "~2.33.3"
+clap = { version = "3.0.10", features = ["cargo"] }
 regex = "^1.5.4"
 
 [build-dependencies]
