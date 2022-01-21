@@ -12,6 +12,7 @@
   "baobab": "--version",
   "bash": "--version",
   "bat": "--version",
+  "bc": "-v",
   "bibtex": "-version",
   "borg": "-V",
   "brew": "--version",
