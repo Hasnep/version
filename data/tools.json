@@ -173,7 +173,7 @@
   "tsc": "-v",
   "ufw": "version",
   "valgrind": "--version",
-  "version": "-v",
+  "version": "--version",
   "vi": "-version",
   "viewnior": "--version",
   "vim": "-version",
