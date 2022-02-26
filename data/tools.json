@@ -162,6 +162,7 @@
   "swift": "-version",
   "syncthing": "-version",
   "tcsh": "--version",
+  "terraform": "-version",
   "tex": "-version",
   "thefuck": "-v",
   "thunar": "--version",
