@@ -1,5 +1,6 @@
 {
   "alacritty": "-V",
+  "ansible": "--version",
   "apt": "-v",
   "aptitude": "--version",
   "arduino": "--version",
