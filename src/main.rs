@@ -12,7 +12,7 @@ fn main() {
             Arg::new("list")
                 .short('l')
                 .long("list")
-                .help("Lists programs")
+                .help("List programs")
                 .takes_value(false),
         )
         .arg(
