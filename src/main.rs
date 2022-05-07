@@ -1,10 +1,10 @@
-use clap::{crate_description, crate_name, crate_version, App, Arg};
+use clap::{crate_description, crate_name, crate_version, Arg, Command};
 use std::collections::HashMap;
 
 mod version;
 
 fn main() {
-    let matches = App::new(crate_name!())
+    let matches = Command::new(crate_name!())
         .version(crate_version!())
         .about(crate_description!())
         .arg(
