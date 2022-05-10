@@ -89,6 +89,7 @@
   "java": "-version",
   "javac": "-version",
   "jc": "-v",
+  "jill": "--version",
   "jq": "--version",
   "julia": "-v",
   "juliaup": "-V",
