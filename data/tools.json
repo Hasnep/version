@@ -129,6 +129,7 @@
   "php": "-v",
   "pip": "-V",
   "pip3": "-V",
+  "pipx": "--version",
   "pkg-config": "--version",
   "pyenv": "-v",
   "python": "-V",
