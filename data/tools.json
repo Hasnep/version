@@ -104,6 +104,7 @@
   "love": "--version",
   "lua": "-v",
   "luarocks": "--version",
+  "macchina": "--version",
   "magick": "--version",
   "make": "-v",
   "man": "--version",
