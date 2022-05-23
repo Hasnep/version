@@ -83,7 +83,7 @@
   "haxe": "-version",
   "haxelib": "version",
   "heroku": "-v",
-  "htop": "-v",
+  "htop": "-V",
   "hugo": "version",
   "inkscape": "--version",
   "java": "-version",
