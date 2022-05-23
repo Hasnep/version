@@ -85,6 +85,7 @@
   "heroku": "-v",
   "htop": "-V",
   "hugo": "version",
+  "i3": "--version",
   "inkscape": "--version",
   "java": "-version",
   "javac": "-version",
