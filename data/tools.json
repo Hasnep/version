@@ -45,6 +45,7 @@
   "docker": "-v",
   "dosbox": "--version",
   "dotnet": "--version",
+  "duckdb": "-version",
   "ed": "-V",
   "egrep": "-V",
   "electron": "-v",
