@@ -18,6 +18,7 @@
   "black": "--version",
   "borg": "-V",
   "brew": "--version",
+  "btop": "-v",
   "bundle": "-v",
   "bundler": "-v",
   "bzip2": "-V",
