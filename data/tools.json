@@ -109,6 +109,7 @@
   "lite": "--version",
   "love": "--version",
   "lua": "-v",
+  "luajit": "-v",
   "luarocks": "--version",
   "macchina": "--version",
   "magick": "--version",
