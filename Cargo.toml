@@ -5,9 +5,9 @@ description = "🦀 The blazing fast way to check what version of grep you're us
 edition = "2021"
 
 [dependencies]
-clap = { version = "^3.1.17", features = ["cargo"] }
-regex = "^1.5.4"
+clap = { version = "^3.2", features = ["cargo"] }
+regex = "^1.6"
 
 [build-dependencies]
-serde_json = "^1.0.59"
-uneval = "^0.2.1"
+serde_json = "^1.0"
+uneval = "^0.2"
