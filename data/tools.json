@@ -157,6 +157,7 @@
   "rake": "--version",
   "ranger": "--version",
   "rbenv": "-v",
+  "rclone": "-V",
   "restic": "version",
   "rg": "-V",
   "rofi": "-v",
