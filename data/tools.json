@@ -135,6 +135,7 @@
   "nim": "-v",
   "nimble": "-v",
   "ninja": "--version",
+  "nix": "--version",
   "node": "-v",
   "nokogiri": "-v",
   "nordvpn": "-v",
