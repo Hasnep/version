@@ -152,6 +152,7 @@
   "pipenv": "--version",
   "pipx": "--version",
   "pkg-config": "--version",
+  "podman": "-v",
   "poetry": "-V",
   "pyenv": "-v",
   "pyright": "--version",
