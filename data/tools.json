@@ -87,6 +87,7 @@
   "grep": "-V",
   "gron": "--version",
   "guake": "--version",
+  "guix": "-V",
   "gzip": "-V",
   "haxe": "-version",
   "haxelib": "version",
