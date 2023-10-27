@@ -141,6 +141,7 @@
   "nvim": "-version",
   "ocaml": "-version",
   "opam": "--version",
+  "packer": "version",
   "pacman": "--version",
   "pamac": "--version",
   "pdflatex": "-version",
