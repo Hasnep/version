@@ -69,6 +69,7 @@
   "flatpak": "--version",
   "fossil": "version",
   "fzf": "--version",
+  "gawk": "--version",
   "gcc": "--version",
   "gdb": "--version",
   "gedit": "--version",
