@@ -92,6 +92,7 @@
   "heroku": "-v",
   "htop": "-V",
   "hugo": "version",
+  "hyperfine": "-V",
   "i3": "--version",
   "inkscape": "--version",
   "java": "-version",
