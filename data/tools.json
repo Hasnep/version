@@ -102,6 +102,7 @@
   "jq": "--version",
   "julia": "-v",
   "juliaup": "-V",
+  "just": "-V",
   "kodi": "-v",
   "kotlin": "-version",
   "ksh": "--version",
