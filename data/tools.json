@@ -85,6 +85,7 @@
   "gpodder": "--version",
   "gradle": "--version",
   "grep": "-V",
+  "gron": "--version",
   "guake": "--version",
   "gzip": "-V",
   "haxe": "-version",
