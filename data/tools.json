@@ -172,6 +172,7 @@
   "ruby": "-v",
   "rustc": "--version",
   "samba": "--version",
+  "sass": "--version",
   "sbatch": "-V",
   "scalac": "-version",
   "sccs": "-V",
